@@ -1,0 +1,73 @@
+
+.animate__animated .animate__fadeInUp{
+    --animate-duration: 1s;
+
+}
+
+h1,p{
+    color: white;
+}
+.animate__animated .animate__backInLeft{
+    --animate-duration: 1s;
+
+}
+body {
+    background-color: #131842; /* Set the body background color */
+    color: white; /* Set default text color */
+  }
+  
+  /* Custom container styles */
+  .container-fluid {
+    padding: 15px;
+  }
+  
+  /* Custom input styles */
+  .custom-input {
+    width: 100%;
+    padding: 8px;
+    background-color: #131842 !important;
+    color: white; /* Input text color */
+    border: 1px solid white; /* Input border */
+  }
+  
+  .custom-input::placeholder {
+    color: white; /* Input placeholder color */
+  }
+  
+
+  
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    
+    background-color: #1f1f38; /* Table background color */
+    color: white; /* Table text color */
+  }
+  
+  .custom-table th,
+  .custom-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid white; /* Table cell border */
+  }
+  
+  .custom-table th {
+    background-color: #131842 !important;
+  }
+  
+  .custom-table tbody tr {
+    background-color: #131842 !important;
+  }
+  
+
+  
+  /* Custom button styles */
+  .btn-dark {
+    background-color: #131842 !important;
+    border-color: #86a2bd; /* Button border color */
+  }
+  
+  .btn-dark:hover {
+    background-color: white; /* Button hover background color */
+    border-color: white; /* Button hover border color */
+  }
