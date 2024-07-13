@@ -1,14 +1,14 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MockDataService } from '../mock-data-service';
-import { Customer , Transaction } from '../Model/customer.model'; 
+import { Customer, Transaction } from '../Model/customer.model'; 
 import Chart from 'chart.js/auto';
+
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
-  styleUrl: './customer.component.css'
+  styleUrls: ['./customer.component.css']
 })
-export class CustomerComponent implements OnInit{
+export class CustomerComponent implements OnInit {
 
   customers: Customer[] = [];
   customersWithTransactions: any[] = [];
@@ -16,6 +16,8 @@ export class CustomerComponent implements OnInit{
   nameFilter: string = '';
   transactionAmountFilter: number | null = null;
   public chart: any;
+
+  @ViewChild('chartContainer') chartContainer!: ElementRef;
 
   constructor(private mockDataService: MockDataService) {}
 
@@ -47,6 +49,16 @@ export class CustomerComponent implements OnInit{
       const matchesTransactionAmount = this.transactionAmountFilter !== null ? customer.totalAmount === this.transactionAmountFilter : true;
       return matchesName && matchesTransactionAmount;
     });
+  }
+
+  onNameFilterInput(): void {
+    this.transactionAmountFilter = null;
+    this.filterCustomers();
+  }
+
+  onTransactionAmountFilterInput(): void {
+    this.nameFilter = '';
+    this.filterCustomers();
   }
 
   createChart(customerId: number): void {
@@ -119,6 +131,10 @@ export class CustomerComponent implements OnInit{
 
   onSelectCustomer(customerId: number): void {
     this.createChart(customerId);
+    this.scrollToChart();
   }
 
+  private scrollToChart(): void {
+    this.chartContainer.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
 }

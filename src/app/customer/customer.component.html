@@ -1,24 +1,32 @@
-<!-- src/app/customer-table/customer-table.component.html -->
-
 <div class="container my-5">
-    <div class="row">
-      <div class="col text-center mb-4">
-        <h1 class="display-4 animate__animated animate__backInLeft">Customer Transactions Summary</h1>
-        <p class="lead">This table provides a summary of total transaction amounts for each customer.</p>
-      </div>
+  <div class="row">
+    <div class="col text-center mb-4">
+      <h1 class="display-4 animate__animated animate__backInLeft">Customer Transactions Summary</h1>
+      <p class="lead">This table provides a summary of total transaction amounts for each customer.</p>
     </div>
-    <div class="row mb-4 mx-auto">
-      <div class="col-md-6">
-        <input type="text" class="custom-input" placeholder="Filter by Name" [(ngModel)]="nameFilter" (input)="filterCustomers()" />
-      </div>
-      <div class="col-md-6">
-        <input type="number" class="custom-input" placeholder="Filter by Transaction Amount" [(ngModel)]="transactionAmountFilter" (input)="filterCustomers()" />
-      </div>
+  </div>
+  <div class="row mb-4 mx-auto">
+    <div class="col-md-6 mb-2">
+      <input 
+        type="text" 
+        class="custom-input" 
+        placeholder="Filter by Name" 
+        [(ngModel)]="nameFilter" 
+        (input)="onNameFilterInput()" />
     </div>
-   
-   <div class="container">
+    <div class="col-md-6">
+      <input 
+        type="number" 
+        class="custom-input" 
+        placeholder="Filter by Transaction Amount" 
+        [(ngModel)]="transactionAmountFilter" 
+        (input)="onTransactionAmountFilterInput()" />
+    </div>
+  </div>
+
+  <div class="container">
     <div class="row">
-      <div class="col">
+      <div class="col-md-12">
         <div class="table-container">
           <table class="custom-table">
             <thead>
@@ -34,7 +42,7 @@
               <tr *ngFor="let customer of filteredCustomers" class="animate__animated animate__fadeInUp">
                 <td>{{ customer.id }}</td>
                 <td>{{ customer.name }}</td>
-                <td>{{ customer.totalAmount | currency }}</td>
+                <td>{{ customer.totalAmount }}</td>
                 <td>{{ customer.numberOfTransactions }}</td>
                 <td><button class="btn btn-dark" (click)="onSelectCustomer(customer.id)">View Chart</button></td>
               </tr>
@@ -43,14 +51,13 @@
         </div>
       </div>
     </div>
-   </div>
-  
-    <div class="row">
-      <div class="col">
-        <div class="chart-container">
-          <canvas id="MyChart"></canvas>
-        </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="chart-container" #chartContainer>
+        <canvas id="MyChart"></canvas>
       </div>
     </div>
   </div>
-  
+</div>
